@@ -1,8 +1,9 @@
+// backend/server.js
 const express = require('express');
 const cors = require('cors');
 const fs = require('fs');
 const OpenAI = require('openai');
-const pluralize = require('pluralize');
+const stringSimilarity = require('string-similarity');
 const app = express();
 const port = 5000;
 
@@ -14,56 +15,47 @@ const openai = new OpenAI({
 });
 
 // Load and parse the knowledge base
-const knowledgeBase = fs.readFileSync('./config/knowledge_base.txt', 'utf-8').split('\n').reduce((acc, line) => {
-    if (line.startsWith('Q:')) {
-        acc.push({ question: line.slice(2).trim(), answer: '' });
-    } else if (line.startsWith('A:')) {
-        acc[acc.length - 1].answer = line.slice(2).trim();
-    }
-    return acc;
-}, []);
+const knowledgeBase = fs.readFileSync('./config/knowledge_base.txt', 'utf-8');
+const knowledgeBaseLines = knowledgeBase.split('\n').map(line => line.trim()).filter(line => line);
 
-const stopWords = [
-    'the', 'is', 'in', 'at', 'of', 'and', 'a', 'to', 'it', 'that', 'on', 'for', 'with', 'as', 'by', 'an', 'be', 'this', 'which', 'or', 'from', 'but', 'not', 'are', 'was', 'were', 'can',
-    'will', 'would', 'should', 'could', 'has', 'have', 'had', 'do', 'does', 'did', 'if', 'then', 'so', 'than', 'when', 'where', 'why', 'how', 'what', 'who', 'whom', 'whose', 'my', 'your', 'his', 'her', 'its', 'our', 'their', 'me', 'you', 'him', 'them', 'us', 'we', 'they'
-];
-
-// Function to filter out stop words and punctuation from the text
-function filterStopWords(text) {
-    return text.replace(/[^\w\s]|_/g, "").split(/\s+/).filter(word => word.trim() && !stopWords.includes(word.toLowerCase()));
-}
-
-// Function to check if the question is relevant to the knowledge base and retrieve the corresponding answer
-function getRelevantAnswer(question, knowledgeBase) {
-    const filteredQuestion = filterStopWords(question).map(word => pluralize.singular(word));
-    for (const entry of knowledgeBase) {
-        const filteredKnowledgeQuestion = filterStopWords(entry.question).map(word => pluralize.singular(word));
-        const commonWords = filteredKnowledgeQuestion.filter(word => filteredQuestion.includes(word));
-        if (commonWords.length > 0) {
-            return entry.answer;
-        }
-    }
-    return null;
-}
+// Function to find the most similar question in the knowledge base
+const findMostSimilarQuestion = (question) => {
+    const matches = stringSimilarity.findBestMatch(question, knowledgeBaseLines);
+    return matches.bestMatch;
+};
 
 app.post('/chat', async (req, res) => {
     const { message } = req.body;
 
-    const answer = getRelevantAnswer(message, knowledgeBase);
+    const bestMatch = findMostSimilarQuestion(message);
 
-    if (!answer) {
-        console.log('Question is not relevant to the knowledge base');
-        res.json({
-            response: {
-                content: 'I am not trained to answer this question. Please ask something else.'
-            }
+    // Define a threshold for similarity score
+    const similarityThreshold = 0.5;
+
+    console.log('Best Match:', bestMatch.rating);
+    if (bestMatch.rating < similarityThreshold) {
+        return res.json({ response: "I don't have data to answer that question" });
+    }
+
+    try {
+        const response = await openai.chat.completions.create({
+            model: 'gpt-3.5-turbo',
+            messages: [
+                { role: 'system', content: knowledgeBase },
+                { role: 'user', content: message }
+            ],
+            max_tokens: 100,
+            temperature: 0.7,
         });
-    } else {
-        console.log('Question is relevant. Responding with:', answer);
-        res.json({ response: { content: answer } });
+
+        //console.log('OpenAI API Response:', response.choices[0].message);
+        res.json({ response: response.choices[0].message });
+    } catch (error) {
+        console.error('Error:', error);
+        res.status(500).json({ error: error.message });
     }
 });
 
 app.listen(port, () => {
-    console.log(`Server is running on port ${port}`);
+    console.log(`Server is running on http://localhost:${port}`);
 });
