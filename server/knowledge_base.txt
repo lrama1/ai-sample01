@@ -1,11 +1,11 @@
-Q: What is the capital of France?
+Q: What is the capital of France
 A: The capital of France is Paris.
 
-Q: Who wrote "To Kill a Mockingbird"?
+Q: Who wrote "To Kill a Mockingbird"
 A: "To Kill a Mockingbird" was written by Harper Lee.
 
-Q: What is the speed of light?
+Q: What is the speed of light
 A: The speed of light is approximately 299,792 kilometers per second.
 
-Q: What are my deductibles?
+Q: What are my deductibles
 A: The benefits document under the section deductible amounts per family.
