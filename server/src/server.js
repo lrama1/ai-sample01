@@ -14,7 +14,7 @@ const openai = new OpenAI({
 });
 
 // Load and parse the knowledge base
-const knowledgeBase = fs.readFileSync('knowledge_base.txt', 'utf-8').split('\n').reduce((acc, line) => {
+const knowledgeBase = fs.readFileSync('./config/knowledge_base.txt', 'utf-8').split('\n').reduce((acc, line) => {
     if (line.startsWith('Q:')) {
         acc.push({ question: line.slice(2).trim(), answer: '' });
     } else if (line.startsWith('A:')) {
