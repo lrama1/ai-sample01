@@ -34,7 +34,7 @@ app.post('/chat', async (req, res) => {
 
     console.log('Best Match:', bestMatch.rating);
     if (bestMatch.rating < similarityThreshold) {
-        return res.json({ response: "I don't have data to answer that question" });
+        return res.json({ response: {content: "I don't have data to answer that question" }});
     }
 
     try {
