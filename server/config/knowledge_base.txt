@@ -1,11 +1,33 @@
-question: What is the capital of France
-answer: The capital of France is Paris.
+# Sample Knowledge Base
 
-question: Who wrote "To Kill a Mockingbird"
-answer: "To Kill a Mockingbird" was written by Harper Lee.
+## Geography
+- The capital of France is Paris.
+- The Amazon River is the second longest river in the world, located in South America.
+- Mount Everest, located in the Himalayas, is the highest mountain in the world.
 
-question: What is the speed of light
-answer: The speed of light is approximately 299,792 kilometers per second.
+## History
+- The Declaration of Independence was signed on July 4, 1776.
+- The Roman Empire was one of the largest empires in ancient history, lasting from 27 BC to AD 476.
+- The Industrial Revolution began in the late 18th century and led to major changes in manufacturing and industry.
 
-question: What are my deductibles
-answer: The benefits document under the section deductible amounts per family.
+## Science
+- Water is composed of two hydrogen atoms and one oxygen atom (H2O).
+- The speed of light in a vacuum is approximately 299,792 kilometers per second.
+- Photosynthesis is the process by which green plants use sunlight to synthesize foods from carbon dioxide and water.
+
+## Technology
+- The first programmable computer, the Z3, was created by Konrad Zuse in 1941.
+- The internet is a global network of interconnected computers that communicate using standardized protocols.
+- Artificial intelligence (AI) refers to the simulation of human intelligence in machines that are programmed to think and learn.
+
+## Literature
+- "To Kill a Mockingbird" is a novel by Harper Lee, published in 1960.
+- William Shakespeare is known for his plays such as "Hamlet," "Romeo and Juliet," and "Macbeth."
+- "1984" is a dystopian novel by George Orwell, published in 1949.
+
+## Miscellaneous
+- The Great Wall of China is one of the most famous landmarks in the world, stretching over 13,000 miles.
+- The Mona Lisa is a famous painting by Leonardo da Vinci, housed in the Louvre Museum in Paris.
+- The Olympic Games are held every four years and feature athletes from around the world competing in various sports.
+
+# End of Sample Knowledge Base
