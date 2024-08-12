@@ -30,4 +30,7 @@
 - The Mona Lisa is a famous painting by Leonardo da Vinci, housed in the Louvre Museum in Paris.
 - The Olympic Games are held every four years and feature athletes from around the world competing in various sports.
 
+## Employee Benefits
+- Deductibles are described in detail at the "Health Options" section of the Employee Handbook.
+
 # End of Sample Knowledge Base
