@@ -16,8 +16,8 @@ async function analyzeChatEntry(entry) {
     // Analyze sentiment
     const sentimentResponse = await openai.chat.completions.create({
         model: 'gpt-3.5-turbo',
-        messages: [{role:'system', content: `Analyze the sentiment of the following conversation:\n\n${chat}\n\nSentiment:`}],
-        max_tokens: 10,
+        messages: [{role:'system', content: `Analyze the sentiment of the following conversation and output should be either positive, negative or neutral:\n\n${chat}\n\nSentiment:`}],
+        max_tokens: 50,
         temperature: 0,
     });
 
@@ -37,7 +37,7 @@ async function analyzeChatEntry(entry) {
     const subjectResponse = await openai.chat.completions.create({
         model: 'gpt-3.5-turbo',
         messages: [{role:'system', content: `Determine the subject of the following conversation:\n\n${chat}\n\nSubject:`}],
-        max_tokens: 20,
+        max_tokens: 50,
         temperature: 0,
     });
 

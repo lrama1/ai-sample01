@@ -5,7 +5,7 @@
     },
     {
         "id": "002",
-        "chat": "Hello, you have reached Acme Corp. My name is Alexa. How can I help you today? My name is Max Powers and I am calling about an unauthorized transaction on my account. I am sorry to hear that. Can I have the last 4 digits of your social? Sure, it's 8899."
+        "chat": "Hello, you have reached Acme Corp. My name is Alexa. How can I help you today? My name is Max Powers and I am calling about an unauthorized transaction on my account which is highly disappointing since your app is supposed to be secure. I am sorry to hear that. Can I have the last 4 digits of your social? Sure, it's 8899."
     },
     {
         "id": "003",
