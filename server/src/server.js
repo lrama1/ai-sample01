@@ -24,12 +24,11 @@ app.post('/chat', async (req, res) => {
         const response = await openai.chat.completions.create({
             model: 'gpt-3.5-turbo',
             messages: [
-                { role: 'system', content: 'You are a helpful assistant. Only use the provided context to answer questions.' },
-                { role: 'user', content: `Here is some context from a file: ${knowledgeBase}` },
+                { role: 'system', content: `You are a helpful assistant. Only answer questions that are in this context: ${knowledgeBase}` },
                 { role: 'user', content: message }
             ],
             max_tokens: 100,
-            temperature: 0.7,
+            temperature: 0,
         });
 
         console.log('OpenAI API Response:', response.choices[0].message);
