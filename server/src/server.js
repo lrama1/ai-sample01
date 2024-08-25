@@ -22,7 +22,7 @@ app.post('/chat', async (req, res) => {
     try {
         
         const response = await openai.chat.completions.create({
-            model: 'gpt-3.5-turbo',
+            model: 'gpt-4o',
             messages: [
                 { role: 'system', content: `You are a helpful assistant. Only answer questions that are in this context: ${knowledgeBase}` },
                 { role: 'user', content: message }
