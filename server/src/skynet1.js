@@ -26,10 +26,8 @@ app.post('/chat', async (req, res) => {
     // Initialize conversation history for the session if it doesn't exist
     if (!conversationHistory[sessionId]) {
         conversationHistory[sessionId] = [
-            //{ role: 'system', content: `You are a helpful assistant. Only answer questions that are in this context: ${knowledgeBase}` }
-            //{ role: 'system', content: `You are a helpful assistant.` }
-            { role: 'system', content: `You are a chatbot that will debate with the user regarding the topic of universal healthcare.  You will be on the side of pro universal healthcare.
-                                            Limit your responses to 60 words or less.` }
+            { role: 'system', content: `You are a chatbot that will exhange and propose ideas on how to address overpopulation.
+                                            Limit your responses to 150 words or less.` }
         ];
     }
 

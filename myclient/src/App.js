@@ -27,11 +27,14 @@ function App() {
 
   return (
     <div className="App">
+      <h1>Chatbot</h1>
       <div className="chat-container">
         <div className="messages">
           {messages.map((msg, index) => (
-            <div key={index} className={`message ${msg.sender}`}>
-              {msg.text}
+            <div key={index} className={`message ${msg.sender}`} style={{ backgroundColor: index % 2 === 0 ? 'lightgray' : 'white' }}>
+              <p>
+                {msg.text}
+              </p>
             </div>
           ))}
         </div>
@@ -41,6 +44,7 @@ function App() {
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyPress={(e) => e.key === 'Enter' && sendMessage()}
+            style={{ width: '80%' }} // Added style to set width to 80%
           />
           <button onClick={sendMessage}>Send</button>
         </div>
